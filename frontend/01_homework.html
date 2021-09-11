@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Stylish&amp;display=swap" rel="stylesheet">
+    <title>스파르타코딩클럽 | 부트스트랩 연습하기</title>
+    <style>
+
+        * {
+            font-family: 'Stylish', sans-serif;
+        }
+
+        .wrap {
+            width: 500px;
+            margin: 100px auto 5px auto;
+
+        }
+
+        .image {
+            width: 500px;
+            height: 250px;
+            background-image: url(https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20160504_295%2Fzzlidde_1462360339348GT0M2_PNG%2F2016-05-04_20.11.40.png&type=sc960_832);
+            background-size: cover;
+            background-position: center;
+
+        }
+
+        .title {
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
+        .form-control-bt {
+            width: 100px;
+            margin: auto;
+            display: block;
+            color: white;
+            background-color: mediumseagreen;
+        }
+    </style>
+</head>
+
+<body>
+<div class="wrap">
+    <div class="image"></div>
+    <div class="title">
+        <h1>네이버를 매도합니다<span style="font-size : 20px;">  가격 : 422000원/1주 </span></h1>
+        <h5>네이버는 사실 엄청난 성장가치를 가지고 있어요. 글로벌한 기업으로 성장할 예정이랍니다.
+            하지만 가격이 너무 올랐어요</h5>
+    </div>
+    <div class="order">
+
+        <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">주문자 이름</div>
+            </div>
+            <input type="text" class="form-control" id="inlineFormInputGroupUsername1">
+        </div>
+
+        <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">수량</div>
+            </div>
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <option selected>---수량을 선택해 주세요---</option>
+                <option value="1">1주</option>
+                <option value="2">2주</option>
+                <option value="3">3주</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="input-group mb-2 mr-sm-2">
+        <div class="input-group-prepend">
+            <div class="input-group-text">주소</div>
+        </div>
+        <input type="text" class="form-control" id="inlineFormInputGroupUsername2">
+    </div>
+
+    <div class="input-group mb-2 mr-sm-2">
+        <div class="input-group-prepend">
+            <div class="input-group-text">전화번호</div>
+        </div>
+        <input type="text" class="form-control" id="inlineFormInputGroupUsername3">
+    </div>
+    <button class="form-control form-control-bt">매도하기</button>
+</div>
+
+</div>
+</body>
+
+</html>
+
