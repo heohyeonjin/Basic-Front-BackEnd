@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <title>현진 페이지 ㅎㅎ</title>
+
+    <meta property="og:title" content="양초 팝니당"/>
+    <meta property="og:description" content="현진이의 웹서비스"/>
+    <meta property="og:image" content="{{ url_for('static', filename='ogimage.jpeg') }}" />
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Jua', sans-serif;
+        }
+        .wrap {
+            width: 500px;
+            margin: auto;
+            padding-top: 20px;
+        }
+
+        .size {
+            font-size: medium;
+        }
+
+        .picture {
+            width: 500px;
+            height: 200px;
+
+            background-image: url("https://t1.daumcdn.net/cfile/tistory/997E2C395B988B3619");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .btn_style {
+            margin: auto;
+            display: block;
+        }
+
+        .rate-color {
+            color: blue;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            rate();
+            show_list();
+        });
+
+        function rate() {
+            $.ajax({
+                type: "GET",
+                url: "https://api.manana.kr/exchange/rate.json",
+                data: {},
+                success: function (response) {
+                    let rate = response[1]['rate']
+                    $('#now-rate').text(rate);
+                }
+            })
+        }
+
+        function ordering(){
+            let name = $('#name').val()
+            let number = $('#number').val()
+            let address = $('#address').val()
+            let phone = $('#phone').val()
+
+
+            $.ajax({
+                type: "POST",
+                url: "/order",
+                data: {
+                    name_give: name,
+                    number_give: number,
+                    address_give: address,
+                    phone_give: phone
+                },
+                success: function (response) {
+                    alert(response["msg"])
+                    window.location.reload();
+                }
+            })
+        }
+
+        function show_list() {
+            $.ajax({
+                type: "GET",
+                url: "/order",
+                data: {},
+                success: function (response) {
+                    orders = response['all_order']
+                    for (let i=0; i<orders.length; i++) {
+                        let name = orders[i]['name']
+                        let number = orders[i]['number']
+                        let address = orders[i]['address']
+                        let phone = orders[i]['phone']
+
+                        let temp_html = `<tr>
+                                            <td>${name}</td>
+                                            <td>${number}</td>
+                                            <td>${address}</td>
+                                            <td>${phone}</td>
+                                        </tr>`
+
+                        $('#order_list').append(temp_html)
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="picture"></div>
+        <div class="mytitle">
+            <p>
+                <h3>양초를 팝니다 <span class="size">가격: 3,000원/개</span></h3>
+            </p>
+            <p>
+                이 양초는 사실 특별한 힘을 가지고 있어요. 양초를 켜고 소원을 빌면
+                짜자잔 뭐든지 이뤄지게 된답니다. 하나 사가세요 ! 대나무 향이 좋아요.
+            </p>
+            <p class="rate-color">
+                달러-원 환율: <span id="now-rate">1219.15</span>
+            </p>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">주문자 이름</span>
+            </div>
+            <input type="text" class="form-control" id="name" aria-label="Username"
+                   aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">수량</span>
+            </div>
+            <select class="form-control custom-select" id="number">
+                <option selected>--수량을 선택하세요--</option>
+                <option value="1">1개</option>
+                <option value="2">2개</option>
+                <option value="3">3개</option>
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">주소</span>
+            </div>
+            <input type="text" class="form-control" id="address" aria-label="Username"
+                   aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">전화번호</span>
+            </div>
+            <input type="text" class="form-control" id="phone" aria-label="Username"
+                   aria-describedby="basic-addon1">
+        </div>
+
+        <button type="button" onclick="ordering()" class="btn btn-primary btn_style">주문하기</button>
+
+        <br>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">이름</th>
+                <th scope="col">수량</th>
+                <th scope="col">주소</th>
+                <th scope="col">전화번호</th>
+            </tr>
+            </thead>
+            <tbody id="order_list">
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
